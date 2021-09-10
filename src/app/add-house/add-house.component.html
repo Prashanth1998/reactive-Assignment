@@ -1,0 +1,172 @@
+<p>add-house works!</p>
+
+<form (ngSubmit)="save()"
+      [formGroup]="addHouseForm">
+    <div class="form-group row mb-2">
+        <label for="line1Id"
+               class="col-md-2 col-form-label"> Address line 1 </label>
+        <div class="col-md-8">
+            <input type="text"
+                   id="line1Id"
+                   placeholder="house no. / street (required)"
+                   formControlName="line1"
+                   [ngClass]="{'is-invalid': (addHouseForm.get('line1').touched || addHouseForm.get('line1').dirty) && !addHouseForm.get('line1').valid } " />
+            <span class="invalid-feedback">
+                <span *ngIf="addHouseForm.get('line1').errors?.required">
+                    Please enter the house number!
+                </span>
+                <span *ngIf="addHouseForm.get('line1').errors?.minlength">
+                    The address should be at least 5 characters!
+                </span>
+                <span *ngIf="addHouseForm.get('line1').errors?.maxlength">
+                    The address shouldnot be more than 40 characters!
+                </span>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="form-group row mb-2">
+        <label for="line2Id"
+               class="col-md-2 col-form-label"> Address line 2 </label>
+        <div class="col-md-8">
+            <input type="text"
+                   id="line2Id"
+                   placeholder="house no. / street (required)"
+                   formControlName="line2"
+                   [ngClass]="{'is-invalid': (addHouseForm.get('line2').touched || addHouseForm.get('line2').dirty ) && !addHouseForm.get('line2').valid } " />
+            <span class="invalid-feedback">
+                <span *ngIf="addHouseForm.get('line2').errors?.required">
+                    Please enter the house number!
+                </span>
+                <span *ngIf="addHouseForm.get('line2').errors?.minlength">
+                    The address should be at least 5 characters!
+                </span>
+                <span *ngIf="addHouseForm.get('line2').errors?.maxlength">
+                    The address should not be more than 40 characters!
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="noOfPeopleId">Number of People </label>
+        <div class="col-md-8">
+            <input class="form-control"
+                   id="noOfPeopleId"
+                   type="number"
+                   formControlName="noOfPeople"
+                   [ngClass]="{'is-invalid': (addHouseForm.get('noOfPeople').touched || addHouseForm.get('noOfPeople').dirty) && !addHouseForm.get('noOfPeople').valid }" />
+            <span class="invalid-feedback">
+                <span *ngIf="addHouseForm.get('noOfPeople').errors?.noOfPeople">
+                    Please enter at least 1 person
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div formArrayName="members"
+         *ngFor="let member of members.controls; let i=index">
+
+        <div [formGroupName]="i">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       attr.for="{{'nameId' + i}}">Name </label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                           id="{{'nameId' + i}}"
+                           type="text"
+                           formControlName="name"
+                           [ngClass]="{'is-invalid': (addHouseForm.get('name').touched || addHouseForm.get('name').dirty) && !addHouseForm.get('name').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="addHouseForm.get('name').errors?.name">
+                            Please enter at least 1 person
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       attr.for="{{'genderId'+i}}">gender </label>
+                <div class="col-md-8">
+                    <label class="form-check-inline">
+                        <input class="form-control"
+                               id="{{'genderId'+i}}"
+                               type="radio"
+                               value="male"
+                               formControlName="gender">Male
+
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <label class="form-check-inline">
+                        <input class="form-control"
+                               id="{{'genderId'+i}}"
+                               type="radio"
+                               value="female"
+                               formControlName="gender">Female
+
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       attr.for="{{'ageId' +i}}">Age </label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                           id="{{'ageId' +i}}"
+                           type="number"
+                           formControlName="age"
+                           [ngClass]="{'is-invalid': (addHouseForm.get('age').touched || addHouseForm.get('age').dirty) && !addHouseForm.get('age').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="addHouseForm.get('age').errors?.age">
+                            Please enter age.
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        <div class="col-md-4">
+
+            <button class="btn btn-outline-primary"
+                    type="button"
+                    [disabled]="!members.valid"
+                    (click)="addMember()">
+                Add new member
+            </button>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+            <button class="btn btn-primary mr-3"
+                    type="submit"
+                    style="width:80px"
+                    [title]="addHouseForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                    [disabled]="!addHouseForm.valid">
+                Save
+            </button>
+
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+            <button class="btn btn-primary mr-3"
+                    type="submit"
+                    style="width:80px"
+                    [disabled]="!addHouseForm.valid">
+                Delete
+            </button>
+
+        </div>
+    </div>
+
+
+</form>
