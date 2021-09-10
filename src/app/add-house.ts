@@ -1,6 +1,4 @@
 export class AddHouse {
-
-
     constructor(
 
         public line1?: string,
@@ -12,7 +10,4 @@ export class AddHouse {
         public age?: number
 
     ) { }
-
-
-
 }
