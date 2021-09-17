@@ -1,13 +1,11 @@
-export class Survey {
+import { Member } from "./member";
 
-    constructor(
+export interface SurveyData {
 
-        public line1?: string,
-        public line2?: string,
-
-        public noOfPeople?: number
-
-    ) { }
-
+    id: number,
+    line1: number,
+    line2: string,
+    members: Member[]
 
 }
+

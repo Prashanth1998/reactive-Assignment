@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators, FormArray } from '@angular/forms';
-import { AddHouse } from '../add-house';
+// import { AddHouse } from '../add-house';
+import { Data } from '../survey-data';
+
+
 function noOfPeopleValidator(min: number): ValidatorFn {
   return (c: AbstractControl): { [key: string]: boolean } | null => {
     if (c.value !== null && (isNaN(c.value) || c.value < 1)) {
@@ -9,14 +12,17 @@ function noOfPeopleValidator(min: number): ValidatorFn {
     return null;
   };
 }
+
+
 @Component({
   selector: 'app-add-house',
   templateUrl: './add-house.component.html',
   styleUrls: ['./add-house.component.css']
 })
+
 export class AddHouseComponent implements OnInit {
   addHouseForm: FormGroup;
-  addHouse: AddHouse = new AddHouse();
+  addHouse: Data = new Data();
 
   get members(): FormArray {
     return <FormArray>this.addHouseForm.get('members');

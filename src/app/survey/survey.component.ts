@@ -1,17 +1,13 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, ValidatorFn, FormBuilder } from '@angular/forms';
-import { Survey } from '../survey';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SurveyData } from '../survey';
+import { Data } from '../survey-data';
 
+import { SurveyDataService } from '../survey-data.service';
 
-function noOfPeopleValidator(min: number): ValidatorFn {
-  return (c: AbstractControl): { [key: string]: boolean } | null => {
-    if (c.value !== null && (isNaN(c.value) || c.value < 1)) {
-      return { 'noOfPeople': true };
-    }
-    return null;
-  };
-}
-
+// this is homepage. 
 
 @Component({
   selector: 'app-survey',
@@ -20,25 +16,28 @@ function noOfPeopleValidator(min: number): ValidatorFn {
 })
 export class SurveyComponent implements OnInit {
 
-  surveyForm: FormGroup;
-  survey: Survey = new Survey();
-  constructor(private fb: FormBuilder) { }
+
+  surveyData: SurveyData[] = [];
+  member: any;
+  constructor(private surveyDataService: SurveyDataService) {
+
+
+  }
+
 
   ngOnInit(): void {
-    this.surveyForm = this.fb.group({
-      line1: ['', [Validators.required, Validators.minLength(5)]],
-      line2: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      noOfPeople: ['1', noOfPeopleValidator(1)],
+    this.surveyDataService.getMembers().subscribe(
+      data => {
+        this.surveyData = data;
+        console.log(data);
+      }
 
-      house: ''
-    })
+    )
+
 
   }
 
 
-  save(): void {
-    console.log(this.surveyForm);
-    console.log('Saved: ' + JSON.stringify(this.surveyForm.value));
-  }
+
 
 }

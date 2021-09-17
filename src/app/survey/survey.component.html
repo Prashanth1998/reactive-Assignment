@@ -1,94 +1,42 @@
-<p>survey works!</p>
+<H3> List of House</H3>
 
+<div class="table-responsive "
+     style="margin-top: 5px;">
+    <table class="table mb-0"
+           *ngIf="surveyData && surveyData.length">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>address line1</th>
+                <th>line2 </th>
+                <th> no of people</th>
 
-<form (ngSubmit)="save()"
-      [formGroup]="surveyForm">
-    <div class="form-group row mb-2">
-        <label for="line1Id"
-               class="col-md-2 col-form-label"> Address line 1 </label>
-        <div class="col-md-8">
-            <input type="text"
-                   id="line1Id"
-                   placeholder="house no. / street (required)"
-                   formControlName="line1"
-                   [ngClass]="{'is-invalid': (surveyForm.get('line1').touched || surveyForm.get('line1').dirty) && !surveyForm.get('line1').valid } " />
-            <span class="invalid-feedback">
-                <span *ngIf="surveyForm.get('line1').errors?.required">
-                    Please enter the house number!
-                </span>
-                <span *ngIf="surveyForm.get('line1').errors?.minlength">
-                    The address should be at least 5 characters!
-                </span>
-                <span *ngIf="surveyForm.get('line1').errors?.maxlength">
-                    The address shouldnot be more than 40 characters!
-                </span>
-            </span>
-        </div>
-    </div>
+            </tr>
+        </thead>
+        <tbody *ngFor="let member of surveyData">
+            <tr>
 
+                <td>{{member.id}}</td>
+                <td>
+                    <a [routerLink]="['/survey/:id']">
+                        {{ member.line1 }}
+                    </a>
+                </td>
+                <td>{{ member.line2 }}</td>
+                <td>{{member.members.length}}</td>
 
-    <div class="form-group row mb-2">
-        <label for="line2Id"
-               class="col-md-2 col-form-label"> Address line 2 </label>
-        <div class="col-md-8">
-            <input type="text"
-                   id="line2Id"
-                   placeholder="house no. / street (required)"
-                   formControlName="line2"
-                   [ngClass]="{'is-invalid': (surveyForm.get('line2').touched || surveyForm.get('line2').dirty ) && !surveyForm.get('line2').valid } " />
-            <span class="invalid-feedback">
-                <span *ngIf="surveyForm.get('line2').errors?.required">
-                    Please enter the house number!
-                </span>
-                <span *ngIf="surveyForm.get('line2').errors?.minlength">
-                    The address should be at least 5 characters!
-                </span>
-                <span *ngIf="surveyForm.get('line2').errors?.maxlength">
-                    The address should not be more than 40 characters!
-                </span>
-            </span>
-        </div>
-    </div>
+                <td>
+                    <button class="btn btn-outline-primary btn-sm"
+                            [routerLink]="['/survey', id, 'edit']">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-outline-primary btn-sm"
+            [routerLink]="'/add'">
+        Add Address
+    </button>
 
-    <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label"
-               for="noOfPeopleId">Number of People </label>
-        <div class="col-md-8">
-            <input class="form-control"
-                   id="noOfPeopleId"
-                   type="number"
-                   formControlName="noOfPeople"
-                   [ngClass]="{'is-invalid': (surveyForm.get('noOfPeople').touched || surveyForm.get('noOfPeople').dirty) && !surveyForm.get('noOfPeople').valid }" />
-            <span class="invalid-feedback">
-                <span *ngIf="surveyForm.get('noOfPeople').errors?.noOfPeople">
-                    Please enter at least 1 person
-                </span>
-            </span>
-        </div>
-    </div>
-    <div class="offset-md-2 row col-md-4">
-        <button class="btn btn-primary mr-3 mb-2"
-                type="submit"
-                style="width:80px"
-                [disabled]="!surveyForm.valid">
-            Add Address
-        </button>
-
-    </div>
-
-
-    <div class="form-group row mb-2">
-        <div class="offset-md-2 col-md-4">
-            <button class="btn btn-primary mr-3"
-                    type="submit"
-                    style="width:80px"
-                    [title]="surveyForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                    [disabled]="!surveyForm.valid">
-                Save
-            </button>
-
-        </div>
-    </div>
-
-
-</form>
+</div>
