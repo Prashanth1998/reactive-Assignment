@@ -26,9 +26,9 @@ import { Data } from './survey-data';
     HttpClientModule,
     InMemoryWebApiModule.forRoot(Data),
     RouterModule.forRoot([
-      { path: 'survey', component: SurveyComponent },
+      { path: '', component: SurveyComponent },
       { path: 'survey/:id', component: HouseDetailsComponent },
-      { path: 'survey/:id/', component: EditDetailsComponent },
+      { path: 'edit/:id', component: EditDetailsComponent },
       { path: 'add', component: AddHouseComponent }
 
     ])

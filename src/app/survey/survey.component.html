@@ -1,4 +1,5 @@
 <H3> List of House</H3>
+<!-- home page  -->
 
 <div class="table-responsive "
      style="margin-top: 5px;">
@@ -7,18 +8,22 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>address line1</th>
-                <th>line2 </th>
+                <th>Address line1</th>
+                <th>Address line2 </th>
                 <th> no of people</th>
+                <th>Risk</th>
 
             </tr>
         </thead>
         <tbody *ngFor="let member of surveyData">
-            <tr>
+            <tr [routerLink]="['survey/', member.id]">
+
 
                 <td>{{member.id}}</td>
                 <td>
-                    <a [routerLink]="['/survey/:id']">
+                    <a>
+
+
                         {{ member.line1 }}
                     </a>
                 </td>
@@ -26,8 +31,15 @@
                 <td>{{member.members.length}}</td>
 
                 <td>
+                    <div class=" risk-low"
+                         *ngIf="mem.age < 60">.</div>
+                    <div class="risk-high"
+                         *ngIf="mem.age> 60">.</div>
+                </td>
+
+                <td>
                     <button class="btn btn-outline-primary btn-sm"
-                            [routerLink]="['/survey', id, 'edit']">
+                            [routerLink]="['/edit', member.id]">
                         Edit
                     </button>
                 </td>
@@ -35,7 +47,7 @@
         </tbody>
     </table>
     <button class="btn btn-outline-primary btn-sm"
-            [routerLink]="'/add'">
+            routerLink="add">
         Add Address
     </button>
 

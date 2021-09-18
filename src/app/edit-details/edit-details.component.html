@@ -1,173 +1,184 @@
-<p>edit-details works!</p>
+<div class="form-group">
 
-
-<form (ngSubmit)="saveMember()"
-      [formGroup]="editDetailsForm">
-    <div class="form-group row mb-2">
-        <label for="line1Id"
-               class="col-md-2 col-form-label"> Address line 1 </label>
-        <div class="col-md-8">
-            <input type="text"
-                   id="line1Id"
-                   placeholder="house no. / street (required)"
-                   formControlName="line1"
-                   [ngClass]="{'is-invalid': (editDetailsForm.get('line1').touched || editDetailsForm.get('line1').dirty) && !editDetailsForm.get('line1').valid } " />
-            <span class="invalid-feedback">
-                <span *ngIf="editDetailsForm.get('line1').errors?.required">
-                    Please enter the house number!
-                </span>
-                <span *ngIf="editDetailsForm.get('line1').errors?.minlength">
-                    The address should be at least 5 characters!
-                </span>
-                <span *ngIf="editDetailsForm.get('line1').errors?.maxlength">
-                    The address shouldnot be more than 40 characters!
-                </span>
-            </span>
-        </div>
-    </div>
-
-
-    <div class="form-group row mb-2">
-        <label for="line2Id"
-               class="col-md-2 col-form-label"> Address line 2 </label>
-        <div class="col-md-8">
-            <input type="text"
-                   id="line2Id"
-                   placeholder="house no. / street (required)"
-                   formControlName="line2"
-                   [ngClass]="{'is-invalid': (editDetailsForm.get('line2').touched || editDetailsForm.get('line2').dirty ) && !editDetailsForm.get('line2').valid } " />
-            <span class="invalid-feedback">
-                <span *ngIf="editDetailsForm.get('line2').errors?.required">
-                    Please enter the house number!
-                </span>
-                <span *ngIf="editDetailsForm.get('line2').errors?.minlength">
-                    The address should be at least 5 characters!
-                </span>
-                <span *ngIf="editDetailsForm.get('line2').errors?.maxlength">
-                    The address should not be more than 40 characters!
-                </span>
-            </span>
-        </div>
-    </div>
-
-    <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label"
-               for="noOfPeopleId">Number of People </label>
-        <div class="col-md-8">
-            <input class="form-control"
-                   id="noOfPeopleId"
-                   type="number"
-                   formControlName="noOfPeople"
-                   [ngClass]="{'is-invalid': (editDetailsForm.get('noOfPeople').touched || editDetailsForm.get('noOfPeople').dirty) && !editDetailsForm.get('noOfPeople').valid }" />
-            <span class="invalid-feedback">
-                <span *ngIf="editDetailsForm.get('noOfPeople').errors?.noOfPeople">
-                    Please enter at least 1 person
-                </span>
-            </span>
-        </div>
-    </div>
-
-    <div formArrayName="members"
-         *ngFor="let member of members.controls; let i=index">
-
-        <div [formGroupName]="i">
-
-            <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label"
-                       attr.for="{{'nameId' + i}}">Name </label>
-                <div class="col-md-8">
-                    <input class="form-control"
-                           id="{{'nameId' + i}}"
-                           type="text"
-                           formControlName="name"
-                           [ngClass]="{'is-invalid': (editDetailsForm.get('name').touched || editDetailsForm.get('name').dirty) && !editDetailsForm.get('name').valid }" />
-                    <span class="invalid-feedback">
-                        <span *ngIf="editDetailsForm.get('name').errors?.name">
-                            Please enter at least 1 person
-                        </span>
+    <form (ngSubmit)="saveMember()"
+          [formGroup]="editDetailsForm">
+        <div class="form-group row mb-2">
+            <label for="line1Id"
+                   class="col-md-2 col-form-label"> Address line 1 </label>
+            <div class="col-md-8">
+                <input type="text"
+                       id="line1Id"
+                       placeholder="house no. / street (required)"
+                       formControlName="line1"
+                       [ngClass]="{'is-invalid': (editDetailsForm.get('line1').touched || editDetailsForm.get('line1').dirty) && !editDetailsForm.get('line1').valid } " />
+                <span class="invalid-feedback">
+                    <span *ngIf="editDetailsForm.get('line1').errors?.required">
+                        Please enter the house number!
                     </span>
-                </div>
+
+                </span>
             </div>
+        </div>
 
-            <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label"
-                       attr.for="{{'genderId'+i}}">gender </label>
-                <div class="col-md-8">
-                    <label class="form-check-inline">
-                        <input class="form-control"
-                               id="{{'genderId'+i}}"
-                               type="radio"
-                               value="male"
-                               formControlName="gender">Male
 
-                    </label>
-                </div>
-                <div class="col-md-8">
-                    <label class="form-check-inline">
-                        <input class="form-control"
-                               id="{{'genderId'+i}}"
-                               type="radio"
-                               value="female"
-                               formControlName="gender">Female
-
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label"
-                       attr.for="{{'ageId' +i}}">Age </label>
-                <div class="col-md-8">
-                    <input class="form-control"
-                           id="{{'ageId' +i}}"
-                           type="number"
-                           formControlName="age"
-                           [ngClass]="{'is-invalid': (editDetailsForm.get('age').touched || editDetailsForm.get('age').dirty) && !editDetailsForm.get('age').valid }" />
-                    <span class="invalid-feedback">
-                        <span *ngIf="editDetailsForm.get('age').errors?.age">
-                            Please enter age.
-                        </span>
+        <div class="form-group row mb-2">
+            <label for="line2Id"
+                   class="col-md-2 col-form-label"> Address line 2 </label>
+            <div class="col-md-8">
+                <input type="text"
+                       id="line2Id"
+                       placeholder="house no. / street (required)"
+                       formControlName="line2"
+                       [ngClass]="{'is-invalid': (editDetailsForm.get('line2').touched || editDetailsForm.get('line2').dirty ) && !editDetailsForm.get('line2').valid } " />
+                <span class="invalid-feedback">
+                    <span *ngIf="editDetailsForm.get('line2').errors?.required">
+                        Please enter the house number!
                     </span>
-                </div>
+                    <span *ngIf="editDetailsForm.get('line2').errors?.minlength">
+                        The address should be at least 5 characters!
+                    </span>
+                    <span *ngIf="editDetailsForm.get('line2').errors?.maxlength">
+                        The address should not be more than 40 characters!
+                    </span>
+                </span>
             </div>
         </div>
-    </div>
-    <!-- <div class="form-group row mb-2">
-        <div class="col-md-4">
 
-            <button class="btn btn-outline-primary"
-                    type="button"
-                    [disabled]="!members.valid"
-                 (click)="displayMember(id)"> 
-    Add new member
-    </button>
-    </div>
-    </div> -->
+        <!-- <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="noOfPeopleId">Number of People </label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="noOfPeopleId"
+                       type="number"
+                       formControlName="noOfPeople"
+                       [ngClass]="{'is-invalid': (editDetailsForm.get('noOfPeople').touched || editDetailsForm.get('noOfPeople').dirty) && !editDetailsForm.get('noOfPeople').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="editDetailsForm.get('noOfPeople').errors?.noOfPeople">
+                        Please enter at least 1 person
+                    </span>
+                </span>
+            </div>
+        </div> -->
 
-    <div class="form-group row mb-2">
-        <div class="offset-md-2 col-md-4">
-            <button class="btn btn-primary mr-3"
-                    type="submit"
-                    style="width:80px"
-                    [title]="editDetailsForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                    [disabled]="!editDetailsForm.valid">
-                Save
-            </button>
+        <div formArrayName="members"
+             *ngFor="let member of members.controls; let i=index">
 
+            <div [formGroupName]="i">
+
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           attr.for="{{'nameId' + i}}">Name </label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="{{'nameId' + i}}"
+                               type="text"
+                               formControlName="name"
+                               [ngClass]="{'is-invalid': (members.controls[i].get('name').touched || members.controls[i].get('name').dirty) && !members.controls[i].get('name').valid }" />
+                        <span class="invalid-feedback">
+                            <span *ngIf="members.controls[i].get('name').errors?.required">
+                                Please enter at least 1 person
+                            </span>
+                            <span *ngIf="members.controls[i].get('name').errors?.minlength">
+                                Please enter at least 3 letters
+                            </span>
+                            <span *ngIf="members.controls[i].get('name').errors?.maxlength">
+                                Please enter at most 32 letters
+                            </span>
+
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           attr.for="{{'genderId'+i}}">gender </label>
+                    <div class="col-md-8">
+                        <label class="form-check-inline">
+                            <input class="form-check-input"
+                                   id="{{'genderId'+i}}"
+                                   type="radio"
+                                   value="male"
+                                   formControlName="gender">Male
+
+                        </label>
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-check-inline">
+                            <input class="form-check-input"
+                                   id="{{'genderId'+i}}"
+                                   type="radio"
+                                   value="female"
+                                   formControlName="gender">Female
+
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           attr.for="{{'ageId' +i}}">Age </label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="{{'ageId' +i}}"
+                               type="number"
+                               formControlName="age"
+                               [ngClass]="{'is-invalid': (members.controls[i].get('age').touched || members.controls[i].get('age').dirty) && !members.controls[i].get('age').valid }" />
+                        <span class="invalid-feedback">
+                            <span *ngIf="members.controls[i].get('age').errors?.age">
+                                Please enter age.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <div class="form-group row mb-2">
-        <div class="offset-md-2 col-md-4">
-            <button class="btn btn-primary mr-3"
-                    type="submit"
-                    style="width:80px"
-                    [disabled]="!editDetailsForm.valid">
-                Delete
-            </button>
-
+        <div class="row">
+            <div class="col-md-2 mb-2">
+                <button class="btn btn-outline-secondary btn-sm"
+                        type="button"
+                        title="Add a search tag"
+                        (click)="addMember()">Add Member
+                </button>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="mb-2">
+                <button class="col-md-1 btn btn-outline-secondary"
+                        type="button"
+                        title="Delete this member"
+                        (click)="deleteMember()">Delete Member
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <div class="offset-md-2 col-md-4">
+                <button class="btn btn-primary mr-3"
+                        type="submit"
+                        style="width:80px"
+                        [title]="editDetailsForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                        [disabled]="!editDetailsForm.valid">
+                    Save
+                </button>
+
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <div class="offset-md-2 col-md-4">
+                <button class="btn btn-primary mr-3"
+                        type="submit"
+                        style="width:80px"
+                        [disabled]="!editDetailsForm.valid">
+                    Delete
+                </button>
+
+            </div>
+        </div>
 
 
-</form>
+    </form>
+</div>

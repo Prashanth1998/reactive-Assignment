@@ -35,7 +35,7 @@ export class SurveyDataService {
   createMember(surveyData: SurveyData): Observable<SurveyData> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     surveyData.id = null;
-    return this.http.post<SurveyData>(this.apiUrl, surveyData, { headers })
+    return this.http.post<SurveyData>(this.apiUrl, { headers })
       .pipe(
         tap(data => console.log('createProduct: ' + JSON.stringify(data))),
         catchError(this.handleError)

@@ -1,0 +1,14 @@
+.risk{
+    height: 35px;
+    width: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    color: #961010;
+}
+.risk-high{
+    background-color: rgb(248, 7, 7);
+}
+
+.risk-low{
+    background-color: rgb(18, 161, 66);
+}

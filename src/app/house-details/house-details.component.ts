@@ -35,7 +35,7 @@ export class HouseDetailsComponent implements OnInit {
     });
   }
   onBack(): void {
-    this.router.navigate(['/survey']);
+    this.router.navigate(['']);
   }
 
 }

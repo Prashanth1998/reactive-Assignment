@@ -1,1 +1,91 @@
-<p>house-details works!</p>
+<div class="card">
+    <div class="card-header"
+         *ngIf="surveyData">
+        {{pageTitle + ": " + surveyData.id}}
+    </div>
+
+    <div class="card-body"
+         *ngIf="surveyData">
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">Address line 1:</div>
+                    <div class="col-md-6">{{surveyData.line1}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Address line 2:</div>
+                    <div class="col-md-6">{{surveyData.line2}}</div>
+                </div>
+                <div class="row">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+
+                                <th>Member name</th>
+                                <th>Gender </th>
+                                <th> Age</th>
+                                <th>Risk</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let mem of surveyData.members">
+
+                            <td>
+                                <div class="row">
+
+                                    <div class="col-md-4">{{mem.name}}</div>
+
+                                </div>
+                            </td>
+                            <td>
+
+
+                                <div class="col-md-4">{{mem.gender}}</div>
+
+                            </td>
+                            <td>
+
+
+                                <div class="col-md-4">{{mem.age}}</div>
+
+                            </td>
+                            <td>
+                                <div class="risk-high"
+                                     *ngIf="mem.age> 60">.</div>
+                                <div class="risk-low"
+                                     *ngIf="mem.age< 60">.</div>
+
+
+
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-secondary mr-3"
+                                style="width:80px"
+                                (click)="onBack()">
+                            <i class="fa fa-chevron-left"></i> Back
+                        </button>
+                        <button class="btn btn-outline-primary"
+                                style="width:80px"
+                                [routerLink]="['/edit', surveyData.id]">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="alert alert-danger"
+                 *ngIf="errorMessage">{{errorMessage}}
+            </div>
+        </div>
+    </div>
+</div>
