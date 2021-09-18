@@ -30,7 +30,7 @@
                 <td>{{ member.line2 }}</td>
                 <td>{{member.members.length}}</td>
 
-                <td>
+                <td *ngFor="let mem of member.members">
                     <div class=" risk-low"
                          *ngIf="mem.age < 60">.</div>
                     <div class="risk-high"
