@@ -98,22 +98,14 @@ export class AddHouseComponent implements OnInit {
   saveMember(): void {
     if (this.addHouseForm.valid) {
       if (this.addHouseForm.dirty) {
-        const p = { ...this.surveyData, ...this.addHouseForm.value };
+        const p = { ...this.addHouseForm.value };
 
+        this.surveyDataService.createMember(p)
+          .subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
 
-        if (p.id === 0) {
-          this.surveyDataService.createMember(p)
-            .subscribe({
-              next: () => this.onSaveComplete(),
-              error: err => this.errorMessage = err
-            });
-        } else {
-          this.surveyDataService.updateMember(p)
-            .subscribe({
-              next: () => this.onSaveComplete(),
-              error: err => this.errorMessage = err
-            });
-        }
       } else {
         this.onSaveComplete();
       }
@@ -137,6 +129,10 @@ export class AddHouseComponent implements OnInit {
       gender: ['', Validators.required],
       age: ['', Validators.required],
     })
+  }
+
+  onBack(): void {
+    this.router.navigate(['']);
   }
 
 

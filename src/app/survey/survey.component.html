@@ -1,54 +1,69 @@
-<H3> List of House</H3>
-<!-- home page  -->
+<div class="mb-2 ">
+    <H3> List of House</H3>
+    <!-- home page  -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-outline-primary btn-sm mx-4 my-3"
+                        routerLink="add">
+                    Add Address
+                </button>
+            </div>
+        </div>
 
-<div class="table-responsive "
-     style="margin-top: 5px;">
-    <table class="table mb-0"
-           *ngIf="surveyData && surveyData.length">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Address line1</th>
-                <th>Address line2 </th>
-                <th> no of people</th>
-                <th>Risk</th>
+        <div class="row">
 
-            </tr>
-        </thead>
-        <tbody *ngFor="let member of surveyData">
-            <tr [routerLink]="['survey/', member.id]">
+            <div class="table-responsive "
+                 style="margin-top: 5px;">
+                <table class="table mb-0"
+                       *ngIf="surveyData && surveyData.length">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Address line1</th>
+                            <th>Address line2 </th>
+                            <th> no of people</th>
+                            <th>Risk</th>
 
-
-                <td>{{member.id}}</td>
-                <td>
-                    <a>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let member of surveyData">
+                        <tr [routerLink]="['survey/', member.id]">
 
 
-                        {{ member.line1 }}
-                    </a>
-                </td>
-                <td>{{ member.line2 }}</td>
-                <td>{{member.members.length}}</td>
+                            <td>{{member.id}}</td>
+                            <td>
+                                <a>
 
-                <td *ngFor="let mem of member.members">
-                    <div class=" risk-low"
-                         *ngIf="mem.age < 60">.</div>
-                    <div class="risk-high"
-                         *ngIf="mem.age> 60">.</div>
-                </td>
 
-                <td>
-                    <button class="btn btn-outline-primary btn-sm"
-                            [routerLink]="['/edit', member.id]">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button class="btn btn-outline-primary btn-sm"
-            routerLink="add">
-        Add Address
-    </button>
+                                    {{ member.line1 }}
+                                </a>
+                            </td>
+                            <td>{{ member.line2 }}</td>
+                            <td>{{member.members.length}}</td>
+
+                            <td>
+                                <div *ngIf="ageCondition(member.id)">
+                                    <span *ngIf="highRisk"
+                                          class="risk-high"></span>
+                                    <span *ngIf="!(highRisk)"
+                                          class="risk-low"></span>
+                                </div>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm"
+                                        [routerLink]="['/edit', member.id]">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
 
 </div>

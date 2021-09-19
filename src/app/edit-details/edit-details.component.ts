@@ -100,7 +100,7 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
     if (this.editDetailsForm) {
       this.editDetailsForm.reset();
     }
-    surveyData = surveyData;
+    this.surveyData = surveyData;
 
     if (surveyData.id === 0) {
       this.pageTitle = 'add address';
@@ -137,13 +137,14 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
   addMember(): void {
     this.members.push(new FormControl());
   }
-  deleteMember(): void {
+  deleteHouse(): void {
+    console.log(this.surveyData);
     if (this.surveyData.id === 0) {
       // Don't delete, it was never saved.
       this.onSaveComplete();
     } else {
-      if (confirm(`Really delete the product: ${this.surveyData.line1}?`)) {
-        this.surveyDataService.deleteProduct(this.surveyData.id)
+      if (confirm(`Really delete the Member: ${this.surveyData.line1}?`)) {
+        this.surveyDataService.deleteHouse(this.surveyData.id)
           .subscribe({
             next: () => this.onSaveComplete(),
             error: err => this.errorMessage = err
@@ -184,7 +185,9 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
     this.editDetailsForm.reset();
     this.router.navigate(['']);
   }
+  deleteMember(): void {
 
+  }
 
 
 

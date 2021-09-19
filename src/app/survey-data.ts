@@ -8,7 +8,7 @@ export class Data implements InMemoryDbService {
         const surveyData: SurveyData[] = [
             {
                 id: 1,
-                line1: 1,
+                line1: 10,
                 line2: "M G Road, Mysore",
 
                 members: [{
@@ -22,34 +22,34 @@ export class Data implements InMemoryDbService {
             {
                 id: 2,
                 line1: 22,
-                line2: "M G Road, Mysore",
+                line2: " K R S road, Mysore",
 
                 members: [{
-                    name: "prashant",
+                    name: "Prasad",
                     gender: "male",
-                    age: 22
+                    age: 25
                 }]
 
             },
             {
                 id: 3,
                 line1: 23,
-                line2: "M G Road, Mysore",
+                line2: "MMG layout, Mangalore",
 
                 members: [{
-                    name: "prashant",
+                    name: "Ranjan",
                     gender: "male",
                     age: 22
                 }]
             },
             {
                 id: 4,
-                line1: 24,
-                line2: "M G Road, Mysore",
+                line1: 124,
+                line2: "M M Ext. , Belgaum",
                 members: [{
-                    name: "prashant",
+                    name: "Akshay",
                     gender: "male",
-                    age: 66
+                    age: 65
                 },
                 {
                     name: "Prakash",

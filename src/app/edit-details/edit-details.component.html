@@ -145,8 +145,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="mb-2">
-                <button class="col-md-1 btn btn-outline-secondary"
+            <div class="mb-2 col-md-2">
+                <button class=" btn btn-outline-secondary"
                         type="button"
                         title="Delete this member"
                         (click)="deleteMember()">Delete Member
@@ -170,9 +170,9 @@
         <div class="form-group row mb-2">
             <div class="offset-md-2 col-md-4">
                 <button class="btn btn-primary mr-3"
-                        type="submit"
-                        style="width:80px"
-                        [disabled]="!editDetailsForm.valid">
+                        type="button"
+                        style="width:40%"
+                        (click)=deleteHouse()>
                     Delete
                 </button>
 

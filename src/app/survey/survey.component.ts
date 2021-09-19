@@ -33,11 +33,24 @@ export class SurveyComponent implements OnInit {
       }
 
     )
-
-
   }
 
-
-
-
+  ageCondition(id: number) {
+    let highRisk: boolean = false;
+    for (let h = 0; h < this.surveyData.length; h++) {
+      if (this.surveyData[h].id === id) {
+        for (let m = 0; h < this.surveyData.length; m++) {
+          if (this.surveyData[h].members[m].age > 60) {
+            highRisk = true;
+            break;
+          }
+        }
+      }
+    } return highRisk;
+  }
 }
+// 2nd for loop error.. for (let m = 0; h < this.surveyData.members.length; m++) {.....
+
+
+
+

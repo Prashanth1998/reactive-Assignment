@@ -35,14 +35,14 @@ export class SurveyDataService {
   createMember(surveyData: SurveyData): Observable<SurveyData> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     surveyData.id = null;
-    return this.http.post<SurveyData>(this.apiUrl, { headers })
+    return this.http.post<SurveyData>(this.apiUrl, surveyData, { headers })
       .pipe(
         tap(data => console.log('createProduct: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  deleteProduct(id: number): Observable<{}> {
+  deleteHouse(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<SurveyData>(url, { headers })
@@ -60,8 +60,8 @@ export class SurveyDataService {
     const url = `${this.apiUrl}/${surveyData.id}`;
     return this.http.put<SurveyData>(url, surveyData, { headers })
       .pipe(
-        tap(() => console.log('updateProduct: ' + surveyData.id)),
-        // Return the product on an update
+        tap(() => console.log('updateMember: ' + surveyData.id)),
+        // Return the member on an update
         map(() => surveyData),
         catchError(this.handleError)
       );
@@ -89,6 +89,7 @@ export class SurveyDataService {
 
     };
   }
+
 
 }
 
